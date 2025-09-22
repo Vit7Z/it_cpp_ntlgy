@@ -16,3 +16,4 @@
 *.mp4
 *.txt
 !CMakeLists.txt
+*.zip
