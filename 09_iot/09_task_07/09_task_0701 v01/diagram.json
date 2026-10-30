@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "VitaN",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -162.6, "left": 18.6, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -39.7, "left": 307, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -281.8,
+      "left": -124.8,
+      "attrs": { "label": "Пуск/Стоп", "color": "red", "xray": "", "key": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -281.8,
+      "left": 67.2,
+      "attrs": { "label": "Вправо", "color": "green", "xray": "", "key": "2" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": -281.8,
+      "left": -28.8,
+      "attrs": { "label": "Влево", "color": "black", "xray": "1" }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -418.79,
+      "left": 250.03,
+      "attrs": { "size": "17", "arrow": "orange" }
+    }
+  ],
+  "connections": [
+    [ "pot1:GND", "uno:GND.2", "black", [ "v28.8", "h-147.9" ] ],
+    [ "uno:5V", "pot1:VCC", "red", [ "v38.3", "h176.6", "v-105.6" ] ],
+    [ "uno:A0", "pot1:SIG", "green", [ "v19.1", "h119.4" ] ],
+    [ "uno:GND.1", "btn1:2.r", "black", [ "v-19.2", "h-191.7", "v-9.6" ] ],
+    [ "uno:2", "btn1:1.r", "green", [ "v-28.8", "h-303.1", "v-86.4" ] ],
+    [ "uno:GND.1", "btn3:2.r", "black", [ "v-38.4", "h-66.9" ] ],
+    [ "uno:3", "btn3:1.r", "green", [ "v-48", "h-197.6", "v-67.2" ] ],
+    [ "uno:GND.1", "btn2:2.r", "black", [ "v0" ] ],
+    [ "uno:4", "btn2:1.r", "green", [ "v-115.2", "h-5.7" ] ],
+    [ "uno:8", "stepper1:B-", "green", [ "v-57.6", "h0.4" ] ],
+    [ "uno:9", "stepper1:B+", "green", [ "v-67.2", "h308" ] ],
+    [ "uno:10", "stepper1:A+", "green", [ "v-76.8", "h307.9" ] ],
+    [ "uno:11", "stepper1:A-", "green", [ "v-86.4", "h0.6" ] ]
+  ],
+  "dependencies": {}
+}

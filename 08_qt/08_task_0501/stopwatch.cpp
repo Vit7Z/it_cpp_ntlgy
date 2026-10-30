@@ -3,14 +3,16 @@
 StopWatch::StopWatch(QObject* parent): QObject{parent} {
   timer = new QTimer(this);
   minutes = 0;
-  minutes_lap = 0;
-  counter_lap = 0;
-  mnt_tmp = 0;
-
   seconds = 0;
-  seconds_lap = 0;
-  scd_temp = 0;
   mil_seconds = 0;
+
+  mnt_tmp = 0;
+  scd_temp = 0;
+
+  lap.counter = 0;
+  lap.min = 0;
+  lap.sec = 0;
+
   connect(timer, &QTimer::timeout, this, &StopWatch::StartTimer);
 }
 
@@ -39,16 +41,19 @@ void StopWatch::StopTimer() {
 }
 
 void StopWatch::ResetTime() {
-  minutes = seconds = counter_lap = 0;
-  minutes_lap = seconds_lap = 0;
+  minutes = seconds = lap.counter = 0;
+  lap.min = lap.sec = 0;
   emit SignalTimer(minutes, seconds);
 }
 
- void StopWatch::GetLap() {
-  mnt_tmp = minutes - minutes_lap;
-  scd_temp = seconds - seconds_lap;
-  counter_lap++;
-  emit SignalGetLap(mnt_tmp, scd_temp, counter_lap);
-  minutes_lap = minutes;
-  seconds_lap = seconds;
+LapInfo
+StopWatch::GetLap ()
+{
+  mnt_tmp = minutes - lap.min;
+  scd_temp = seconds - lap.sec;
+  lap.counter++;
+  emit SignalGetLap (mnt_tmp, scd_temp, lap.counter);
+  lap.min = minutes;
+  lap.sec = seconds;
+  return lap;
 }

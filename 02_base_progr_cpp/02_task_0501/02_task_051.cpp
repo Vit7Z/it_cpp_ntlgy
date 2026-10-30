@@ -5,8 +5,7 @@
 #include <locale.h>
 #include <windows.h>
 
-class Figure
-{
+class Figure {
   private:
     unsigned short numberOfSides;
     std::string name;

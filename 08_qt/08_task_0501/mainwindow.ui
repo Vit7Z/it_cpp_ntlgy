@@ -34,7 +34,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>09_task_0501 --&gt; Секундомер</string>
+   <string>08_task_0501 --&gt; Секундомер</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">

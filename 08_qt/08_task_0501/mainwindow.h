@@ -20,7 +20,7 @@ class MainWindow : public QMainWindow
 
   public slots:
     void ShowTimer(uint, float);
-    void ShowTimerLap(uint, float, uint);
+    void on_pb_lap_clicked (bool);
 
   private:
     Ui::MainWindow *ui;

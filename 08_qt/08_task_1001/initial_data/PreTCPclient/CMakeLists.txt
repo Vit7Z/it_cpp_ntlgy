@@ -11,9 +11,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
 find_package(Qt6 COMPONENTS Widgets Network REQUIRED)
-
 
 set(PROJECT_SOURCES
         main.cpp
@@ -25,15 +23,12 @@ set(PROJECT_SOURCES
         structs.h
 )
 
-
 qt_add_executable(10_TCPclient
     MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
 )
 
-
 target_link_libraries(10_TCPclient PRIVATE Qt6::Widgets
                                            Qt6::Network)
 
 qt_finalize_executable(10_TCPclient)
-

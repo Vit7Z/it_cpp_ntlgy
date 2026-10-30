@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow (QWidget *parent)
+    : QMainWindow (parent), ui (new Ui::MainWindow)
 {
   ui->setupUi(this);
   stopWatch = new StopWatch(this);
@@ -24,8 +25,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
   connect(ui->pb_reset, &QPushButton::clicked, stopWatch, &StopWatch::ResetTime);
   connect(ui->pb_reset, &QPushButton::clicked, this, [this] () {ui->txtbr_show_lap->clear();});
   connect(stopWatch, &StopWatch::SignalTimer, this, &MainWindow::ShowTimer);
-  connect(ui->pb_lap, &QPushButton::clicked, stopWatch, &StopWatch::GetLap);
-  connect(stopWatch, &StopWatch::SignalGetLap, this, &MainWindow::ShowTimerLap);
 }
 
 MainWindow::~MainWindow() {
@@ -37,9 +36,11 @@ void MainWindow::ShowTimer(uint minutes, float seconds) {
   ui->lb_count_seconds->setText(QString::number(seconds, 'f', 1).rightJustified(4, '0'));
 }
 
-void MainWindow::ShowTimerLap(uint minutes_lap, float seconds_lap, uint counter_lap){
-  ui->txtbr_show_lap->append(
-    "Круг: " + QString::number(counter_lap) +
-    " Минуты : " + QString::number(minutes_lap) +
-    " Секунды " + QString::number(seconds_lap, 'f', 1));
+void
+MainWindow::on_pb_lap_clicked (bool checked) {
+  LapInfo lap = stopWatch->GetLap();
+
+  ui->txtbr_show_lap->append ("Круг: " + QString::number (lap.counter)
+                              + " Минуты : " + QString::number (lap.min)
+                              + " Секунды " + QString::number (lap.sec, 'f', 1));
 }
