@@ -1,4 +1,4 @@
-#include "parser_exeption.h"
+#include "parser_ini_exeption.h"
 #include <string>
 
 ParserIniExeption::ParserIniExeption(const int number_line, const std::string& error)

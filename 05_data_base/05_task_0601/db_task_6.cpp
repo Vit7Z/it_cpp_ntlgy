@@ -109,7 +109,7 @@ std::string InputConnectLine() {
 	db_connection_string += " host=" + input;
 	input = " ";
 	while (!(input.find_first_not_of("0123456789") == std::string::npos)) {
-		std::cout << "¬ведите port, можно укзаать просто base: ";
+		std::cout << "¬ведите port, можно укзать просто base: ";
 		std::cin >> input;
 		transform(input.begin(), input.end(), input.begin(), ::tolower);
 		if (input == "base") {

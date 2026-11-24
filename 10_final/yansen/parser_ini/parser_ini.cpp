@@ -2,7 +2,7 @@
 #include <regex>
 
 #include "parser_ini.h"
-#include "parser_exeption.h"
+#include "parser_ini_exeption.h"
 
 #define ALLOWED_CHAR_NAME "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-"
 

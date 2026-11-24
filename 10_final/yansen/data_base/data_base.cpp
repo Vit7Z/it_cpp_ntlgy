@@ -11,7 +11,8 @@ DataBase::DataBase(const std::string& idb) :conn_db_{ pqxx::connection(idb) }
 }
 
 void DataBase::AddKeywordLink(const std::map<std::string, unsigned int>& words, const std::string& link) {
-	if (check_url(link)) {//повторное добавление ссылки
+	//повторное добавление ссылки
+	if (CheckUrl(link)) {
 		return; 
 	}
 
@@ -20,7 +21,7 @@ void DataBase::AddKeywordLink(const std::map<std::string, unsigned int>& words, 
 	tx.commit();
 
 	for (const auto& [key, value] : words) {
-		if (!check_keyword(key)) {
+		if (!CheckKeyword(key)) {
 			tx.exec_prepared("add_keyword", key);
 			tx.commit();
 		}
@@ -60,7 +61,7 @@ std::map<std::string, int> DataBase::GetUrls(const std::string& keyword) {
 	return result;
 }
 
-void DataBase::CreateDB() {
+void DataBase::CreateDataBase() {
 	pqxx::work tx{ conn_db_ };
 
 	tx.exec("CREATE TABLE IF NOT EXISTS keywords( "
